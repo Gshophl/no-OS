@@ -562,6 +562,12 @@ int main(void)
 	}
 
 	if (!IS_AD9371(product_id)) {
+		mykError = MYKONOS_radioOff(&mykDevice);
+		if (mykError != MYKONOS_ERR_OK) {
+			errorString = getMykonosErrorMessage(mykError);
+			goto error_11;
+		}
+
 		mykError = MYKONOS_configDpd(&mykDevice);
 		if (mykError != MYKONOS_ERR_OK) {
 			errorString = getMykonosErrorMessage(mykError);
